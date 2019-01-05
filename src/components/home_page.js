@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import ImageOne from "/Users/Neel/GWCyberSite/images/ImageOne.jpg";
-import ImageTwo from "/Users/Neel/GWCyberSite/images/ImageTwo.jpg";
-import slides from './slides'
+import homepageslides from './homepageslides'
 import Slide from "./slide";
 
 
@@ -11,28 +9,31 @@ export default class HomePage extends Component {
       super(props);
 
       this.state = {
-        slides: [
-            <Slide onClick={this.changeSlides()} src={ImageOne} text="GW Cyber's slide 1" />,
-            <Slide onClick={this.changeSlides()} src={ImageTwo} text="GW Cyber's slide 2" />
-        ],
-       displaySlide: slides[0]
+       slides: homepageslides.slides,
+       displaySlide: homepageslides.slides[0]
       };
+
+      this.changeSlides.bind(this);
   }
   changeSlides(){
-    this.state.displayIndex += 1;
+    const nextIndex = this.state.displaySlide.index + 1;
 
-    if(this.state.displayIndex == this.state.slides.length){
-      this.state.displayIndex = 0;
+    if(nextIndex == this.state.slides.length){
+      this.setState({
+        displaySlide: this.state.slides[0]
+      });
     }
 
-    else if(this.state.displayIndex == -1){
-      this.state.displayIndex = this.state.slides.length-1;
+    else if(nextIndex == -1){
+      this.setState({
+        displaySlide: this.state.slides[this.state.slides.length-1]
+      });
     }
-
-    this.setState({
-      displayIndex: 0,
-      displaySlide: this.state.slides[displayIndex]
-    });
+    else{
+      this.setState({
+        displaySlide: this.state.slides[nextIndex]
+      });
+    }
   }
 
   render() {
@@ -48,7 +49,7 @@ export default class HomePage extends Component {
      <Link to="/blog" className="btn ">Blog</Link>
       </div>
       <div>
-      <Slide src={this.state.displaySlide} key={this.state.displayIndex} />
+      <Slide onClick={() => this.changeSlides()} property={this.state.displaySlide} key={this.state.displaySlide.index} />
        </div>
       </div>
     );

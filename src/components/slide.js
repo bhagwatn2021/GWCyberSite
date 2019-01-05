@@ -2,11 +2,11 @@ import React from "react";
 
 
 const Slide = (props) => {
-  const imageSrc = props.src;
-  const imageText = props.text;
+  const imageSrc = props.property.image;
+  const imageText = props.property.text;
 
   return (
-      <div className="video-list media">
+      <div className="media">
         <div className="media">
           <img className="media-object" src={imageSrc} />
         </div>
