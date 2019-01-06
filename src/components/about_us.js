@@ -14,6 +14,9 @@ export default class AboutUs extends Component {
       <Link to="/events" className="btn ">Events</Link>
       <Link to="/blog" className="btn ">Blog</Link>
       </div>
+      <div>
+      GW Cyber is an org on campus. We strive to educate the student body on topics in cybersecurity.
+      </div>
       </div>
     );
   }

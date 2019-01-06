@@ -13,7 +13,6 @@ export default class HomePage extends Component {
        displaySlide: homepageslides.slides[0]
       };
 
-      this.changeSlides.bind(this);
   }
   changeSlides(){
     const nextIndex = this.state.displaySlide.index + 1;
@@ -49,8 +48,10 @@ export default class HomePage extends Component {
      <Link to="/blog" className="btn ">Blog</Link>
       </div>
       <div>
-      <Slide onClick={() => this.changeSlides()} property={this.state.displaySlide} key={this.state.displaySlide.index} />
-       </div>
+      <button onClick={() => this.changeSlides()}>
+        <Slide  property={this.state.displaySlide} key={this.state.displaySlide.index} />
+      </button>
+      </div>
       </div>
     );
   }
